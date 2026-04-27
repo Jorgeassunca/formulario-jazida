@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jazida+ — Portal de Formulários</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-deep:  #1D4A3A;
+  --green-mid:   #2E6B56;
+  --green-soft:  #4A7C6F;
+  --green-xpale: #F2F7F5;
+  --gold:        #C4923A;
+  --gold-light:  #F5ECD9;
+  --ink:         #1A1F1C;
+  --muted:       #6B7571;
+  --hint:        #9EAAA6;
+  --bg:          #F4F1EB;
+  --surface:     #FDFCFA;
+  --border:      #DDD9D0;
+  --radius:      12px;
+  --radius-lg:   18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:flex;flex-direction:column}
+
+/* HEADER */
+.page-header{background:var(--green-deep);padding:40px 24px 36px;text-align:center;position:relative;overflow:hidden;flex-shrink:0}
+.page-header::before{content:'';position:absolute;top:-80px;right:-80px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(196,146,58,.15)}
+.page-header::after{content:'';position:absolute;bottom:-60px;left:-60px;width:180px;height:180px;border-radius:50%;border:1px solid rgba(196,146,58,.1)}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;color:#fff;letter-spacing:.01em;line-height:1;margin-bottom:4px}
+.brand-name span{color:var(--gold)}
+.brand-sub{font-size:11px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:24px}
+.header-divider{width:40px;height:1px;background:var(--gold);margin:0 auto 20px;opacity:.6}
+.header-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:rgba(255,255,255,.9);line-height:1.4;margin-bottom:8px}
+.header-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7;max-width:440px;margin:0 auto}
+
+/* MAIN */
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 16px}
+
+.cards-wrap{width:100%;max-width:700px}
+
+.choose-label{text-align:center;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.choose-label::before,.choose-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:540px){.cards{grid-template-columns:1fr}}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 24px;cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:all .2s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);opacity:0;transition:opacity .2s}
+.card:hover{border-color:var(--green-soft);transform:translateY(-3px);box-shadow:0 8px 32px rgba(29,74,58,.1)}
+.card:hover::before{opacity:1}
+
+.card-icon{width:44px;height:44px;border-radius:10px;background:var(--green-xpale);display:flex;align-items:center;justify-content:center;margin-bottom:18px;flex-shrink:0}
+.card-icon svg{width:22px;height:22px;stroke:var(--green-mid);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+.card-badge{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;background:var(--gold-light);color:#7A5A1A;padding:3px 10px;border-radius:20px;margin-bottom:10px;width:fit-content}
+
+.card-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--ink);line-height:1.2;margin-bottom:8px}
+
+.card-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:20px;flex:1}
+
+.card-items{display:flex;flex-direction:column;gap:5px;margin-bottom:20px}
+.card-item{font-size:12px;color:var(--muted);padding-left:14px;position:relative;line-height:1.5}
+.card-item::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:10px;top:2px}
+
+.card-cta{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border)}
+.card-cta-text{font-size:13px;font-weight:500;color:var(--green-mid)}
+.card-cta-arrow{width:30px;height:30px;border-radius:50%;background:var(--green-xpale);display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+.card:hover .card-cta-arrow{background:var(--green-deep);transform:translateX(2px)}
+.card-cta-arrow svg{width:14px;height:14px;stroke:var(--green-mid);transition:stroke .2s}
+.card:hover .card-cta-arrow svg{stroke:#fff}
+
+/* FOOTER */
+footer{text-align:center;padding:20px 16px;font-size:12px;color:var(--hint);flex-shrink:0}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--green-deep);font-weight:500;margin-bottom:4px}
+.footer-logo em{color:var(--gold);font-style:normal}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.cards-wrap{animation:fadeUp .45s ease both}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="brand-name">JAZIDA<span>+</span></div>
+  <div class="brand-sub">Consultor</div>
+  <div class="header-divider"></div>
+  <div class="header-title">Portal de Formulários</div>
+  <div class="header-desc">Selecione abaixo o formulário que deseja preencher</div>
+</div>
+
+<main>
+  <div class="cards-wrap">
+    <div class="choose-label">Escolha uma opção</div>
+    <div class="cards">
+
+      <!-- CARD 1 — PROCESSOS ANM -->
+      <a class="card" href="processos.html">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="card-badge">Coleta de dados</div>
+        <div class="card-title">Processos Minerários ANM</div>
+        <div class="card-desc">Envie os números dos seus processos para geração do relatório minerário personalizado.</div>
+        <div class="card-items">
+          <div class="card-item">Dados da consultoria e do cliente</div>
+          <div class="card-item">Processos único titular ou grupo econômico</div>
+          <div class="card-item">Escolha do formato do relatório</div>
+        </div>
+        <div class="card-cta">
+          <span class="card-cta-text">Acessar formulário</span>
+          <div class="card-cta-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- CARD 2 — MARKETPLACE -->
+      <a class="card" href="marketplace.html">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/><line x1="12" y1="12" x2="12" y2="21"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+        </div>
+        <div class="card-badge">Marketplace</div>
+        <div class="card-title">Perfil de Parceiro Jazida+</div>
+        <div class="card-desc">Ative seu perfil no Marketplace Jazida+ e aumente sua visibilidade para empresas do setor mineral.</div>
+        <div class="card-items">
+          <div class="card-item">Informações e posicionamento da consultoria</div>
+          <div class="card-item">Serviços, experiência e presença digital</div>
+          <div class="card-item">Publicação no ecossistema Jazida+</div>
+        </div>
+        <div class="card-cta">
+          <span class="card-cta-text">Acessar formulário</span>
+          <div class="card-cta-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-logo">JAZIDA<em>+</em> CONSULTOR</div>
+  Ecossistema de consultoria minerária
+</footer>
+
+</body>
+</html>
